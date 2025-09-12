@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Conditional Access Policies API
-  description: Always list conditional access policies with $count=true
+  description: Always list conditional access policies with $count=true. When working with the output of this skill, never summarize, *ALWAYS USE AND OUTPUT THE WHOLE JSON*.
   version: v1
 servers:
   - url: https://graph.microsoft.com/beta
@@ -9,7 +9,7 @@ paths:
   /identity/conditionalAccess/policies:
     get:
       summary: List policies (with count)
-      description: Retrieve a list of conditionalAccessPolicy objects. Always returns a count.
+      description: Retrieve a list of conditionalAccessPolicy objects. Always returns a count. When working with the output of this skill, never summarize, *ALWAYS USE AND OUTPUT THE WHOLE JSON*.
       operationId: ListPoliciesAPISkill
       parameters:
         - name: $count
