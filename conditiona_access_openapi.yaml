@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Conditional Access Policies API
+  description: Always list conditional access policies with $count=true
+  version: v1
+servers:
+  - url: https://graph.microsoft.com/beta
+paths:
+  /identity/conditionalAccess/policies:
+    get:
+      summary: List policies (with count)
+      description: Retrieve a list of conditionalAccessPolicy objects. Always returns a count.
+      operationId: ListPoliciesAPISkill
+      parameters:
+        - name: $count
+          in: query
+          required: true
+          schema:
+            type: boolean
+            enum: [true]   # only valid value is true
+          description: Always true
+        - name: ConsistencyLevel
+          in: header
+          required: true
+          schema:
+            type: string
+            enum: [eventual]
+          description: Required when $count is used
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
