@@ -1,0 +1,54 @@
+openapi: 3.0.0
+info:
+  title: Microsoft Graph License Optimizer API
+  description: Fetch users and subscribed SKUs for license optimization analysis.
+  version: v1
+servers:
+  - url: https://graph.microsoft.com/beta
+
+paths:
+  /users:
+    get:
+      summary: List users with license and sign-in data
+      description: >
+        Retrieve all users with license assignment states, sign-in activity, and account status.
+        Use $select to return only required properties.
+      operationId: ListUsersAPISkill
+      parameters:
+        - name: $select
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: ["userPrincipalName,accountEnabled,licenseAssignmentStates,signInActivity"]
+          description: Always request these specific properties.
+        - name: $top
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 999
+            maximum: 999
+          description: The number of users to return in one page. Set to 999 to maximize the result size.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                
+
+  /subscribedSkus:
+    get:
+      summary: List all subscribed SKUs for the tenant
+      description: >
+        Retrieve all available license SKUs, including SKU IDs, usage counts, and service plans.
+      operationId: ListSubscribedSkusAPISkill
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
