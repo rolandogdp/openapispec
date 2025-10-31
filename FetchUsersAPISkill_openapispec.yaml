@@ -13,6 +13,7 @@ paths:
       description: >
         Retrieve all users with license assignment states, sign-in activity, and account status.
         Use $select to return only required properties.
+        The $top parameter is included to request the maximum number of results per page.
       operationId: ListUsersAPISkill
       parameters:
         - name: $select
@@ -20,16 +21,17 @@ paths:
           required: true
           schema:
             type: string
-            enum: ["userPrincipalName,accountEnabled,licenseAssignmentStates,signInActivity"]
+            enum: ["userPrincipalName,accountEnabled,licenseAssignmentStates"]
           description: Always request these specific properties.
         - name: $top
           in: query
-          required: false
+          required: true
           schema:
             type: integer
             default: 999
             maximum: 999
-          description: The number of users to return in one page. Set to 999 to maximize the result size.
+          description: >
+            Maximum number of users to return per page. Always set to 999 to minimize pagination.
       responses:
         '200':
           description: OK
@@ -42,8 +44,9 @@ paths:
   /subscribedSkus:
     get:
       summary: List all subscribed SKUs for the tenant
-      description: >
+      description: >-
         Retrieve all available license SKUs, including SKU IDs, usage counts, and service plans.
+        When using this data, never truncate the results; always retrieve all SKUs and print all of them.
       operationId: ListSubscribedSkusAPISkill
       responses:
         '200':
