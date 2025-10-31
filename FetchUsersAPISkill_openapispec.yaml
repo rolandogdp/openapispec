@@ -21,15 +21,13 @@ paths:
           required: true
           schema:
             type: string
-            enum: ["userPrincipalName,accountEnabled,licenseAssignmentStates"]
-          description: Always request these specific properties.
+          description: Always request these specific properties: userPrincipalName, accountEnabled, licenseAssignmentStates.
         - name: $top
           in: query
           required: true
           schema:
             type: integer
-            default: 999
-            maximum: 999
+            enum: [999]
           description: >
             Maximum number of users to return per page. Always set to 999 to minimize pagination.
       responses:
@@ -39,14 +37,12 @@ paths:
             application/json:
               schema:
                 type: object
-                
 
   /subscribedSkus:
     get:
       summary: List all subscribed SKUs for the tenant
       description: >-
         Retrieve all available license SKUs, including SKU IDs, usage counts, and service plans.
-        When using this data, never truncate the results; always retrieve all SKUs and print all of them.
       operationId: ListSubscribedSkusAPISkill
       responses:
         '200':
