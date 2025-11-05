@@ -27,9 +27,17 @@ paths:
           required: true
           schema:
             type: integer
-            enum: [999]
+            enum: [400]
           description: >
-            Maximum number of users to return per page. Always set to 999 to minimize pagination.
+            Maximum number of users to return per page. Always set to 400 to minimize pagination.
+        - name: $filter
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: ["assignedLicenses/$count ne 0"]
+          description: >
+            Filter to only return users with at least one assigned license.
       responses:
         '200':
           description: OK
