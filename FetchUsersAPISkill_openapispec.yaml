@@ -21,15 +21,16 @@ paths:
           required: true
           schema:
             type: string
-          description: Always request these specific properties userPrincipalName, accountEnabled, licenseAssignmentStates.
+          default: userPrincipalName,accountEnabled,licenseAssignmentStates
+          description: Always request these properties.
         - name: $top
           in: query
           required: true
           schema:
             type: integer
-            enum: [80]
+            enum: [50]
           description: >
-            Maximum number of users to return per page. Always set to 400 to minimize pagination.
+            Maximum number of users to return per page. Always set to 50 to minimize pagination.
       responses:
         '200':
           description: OK
