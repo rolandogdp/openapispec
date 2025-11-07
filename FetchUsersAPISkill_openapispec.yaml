@@ -28,7 +28,7 @@ paths:
           required: true
           schema:
             type: integer
-            enum: [50]
+            enum: [150]
           description: >
             Maximum number of users to return per page. Always set to 50 to minimize pagination.
       responses:
