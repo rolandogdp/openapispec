@@ -13,7 +13,6 @@ paths:
       description: >
         Retrieve all users with license assignment states, sign-in activity, and account status.
         Use $select to return only required properties.
-        The $top parameter is included to request the maximum number of results per page.
       operationId: ListUsersAPISkill
       parameters:
         - name: $select
@@ -22,13 +21,13 @@ paths:
           schema:
             type: string
           default: userPrincipalName,accountEnabled,licenseAssignmentStates
-          description: Always request these properties.
+          description: Always request userPrincipalName, accountEnabled, and licenseAssignmentStates.
         - name: $top
           in: query
           required: true
           schema:
             type: integer
-            enum: [80]
+            enum: [50]
           description: >
             Maximum number of users to return per page. Always set to 50 to minimize pagination.
       responses:
